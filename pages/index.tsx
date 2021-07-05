@@ -1,10 +1,12 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import React from 'react';
+import SnippetCard from '../components/SnippetCard'
 
 export default function Home() {
     return (
         <div className="min-h-screen max-w-4xl py-2 mx-auto">
+            
             <Head>
                 <title>Create Next App</title>
                 <link rel="icon" href="/favicon.ico" />
@@ -37,7 +39,9 @@ export default function Home() {
                     </div>
                 </div>
             </header>
-            <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center"></main>
+            <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
+            </main>
+            <SnippetCard></SnippetCard>
 
             <footer className="flex items-center justify-center w-full h-24 border-t"></footer>
         </div>
