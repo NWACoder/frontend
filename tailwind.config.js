@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 module.exports = {
     purge: [
         './pages/**/*.{js,ts,jsx,tsx}',
@@ -5,6 +7,9 @@ module.exports = {
     ],
     darkMode: false, // or 'media' or 'class'
     theme: {
+        fontFamily: {
+            sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+        },
         extend: {},
     },
     variants: {
