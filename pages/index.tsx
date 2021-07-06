@@ -4,6 +4,7 @@ import { Header } from '../components/Common/Header';
 import { ChevronRightIcon } from '@heroicons/react/solid';
 import { useEffect, useState } from 'react';
 import { IndexState } from '../types';
+import { SnippetCard } from '../components/Common/SnippetCard';
 
 export default function Index() {
     const [state, setState] = useState<IndexState>({
@@ -57,6 +58,7 @@ export default function Index() {
                     </div>
                 </div>
                 <div className="mt-28">
+                <SnippetCard />
                     <div className="text-2xl font-thin sm:my-8">
                         Community Stats
                     </div>
