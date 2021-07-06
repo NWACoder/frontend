@@ -1,8 +1,7 @@
-import Head from 'next/head';
 import Link from 'next/link';
-import { Header } from '../components/Common/Header';
+import { Layout } from '../components/Common/Layout';
 import { ChevronRightIcon } from '@heroicons/react/solid';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IndexState } from '../types';
 
 export default function Index() {
@@ -27,12 +26,7 @@ export default function Index() {
 
     const { users, snippets, qa } = state;
     return (
-        <div className="flex flex-col min-h-screen max-w-4xl py-2 mx-auto">
-            <Head>
-                <title>Create Next App</title>
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
-            <Header />
+        <Layout>
             <main className="flex flex-col flex-grow items-center justify-center w-full mt-36 text-center">
                 <div className="flex flex-row items-center justify-around w-full flex-wrap-reverse">
                     <div className="w-64 text-left mx-6 my-16">
@@ -80,8 +74,6 @@ export default function Index() {
                     </div>
                 </div>
             </main>
-
-            <footer className="flex items-center justify-center w-full h-4 border-t mt-16"></footer>
-        </div>
+        </Layout>
     );
 }
