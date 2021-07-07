@@ -30,7 +30,7 @@ export default function Index() {
     return (
         <div className="flex flex-col min-h-screen max-w-4xl py-2 mx-auto">
             <Head>
-                <title>Create Next App</title>
+                <title>CodeParcel.io</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Header />
@@ -57,8 +57,8 @@ export default function Index() {
                         <div className="bg-black w-72 h-48 absolute"></div>
                     </div>
                 </div>
-                <div className="mt-28">
                 <SnippetCard />
+                <div className="mt-28">
                     <div className="text-2xl font-thin sm:my-8">
                         Community Stats
                     </div>
