@@ -103,10 +103,12 @@ const UserNav = () => {
                 </div>
             </button>
             {active && (
-                <div className="absolute w-full border border-t-0 rounded">
-                    <button className="py-2 w-full hover:bg-gray-200 font-thin text-lg text-left px-3">
-                        Dashboard
-                    </button>
+                <div className="absolute w-full border border-t-0 rounded bg-white z-10">
+                    <Link href="/user/dashboard">
+                        <button className="py-2 w-full hover:bg-gray-200 font-thin text-lg text-left px-3">
+                            Dashboard
+                        </button>
+                    </Link>
                     <button
                         className="py-2 w-full hover:bg-gray-200 font-thin text-lg text-left px-3"
                         onClick={handleLogout}
