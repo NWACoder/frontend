@@ -1,0 +1,5 @@
+@tailwind components;
+
+.snippet-card:hover .snippet-card-header {
+    @apply bg-blue-900;
+}
