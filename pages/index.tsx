@@ -3,7 +3,6 @@ import { Layout } from '../components/Common/Layout';
 import { ChevronRightIcon } from '@heroicons/react/solid';
 import React, { useEffect, useState } from 'react';
 import { IndexState } from '../types';
-import { LoginModal } from '../components/Common/LoginModal';
 
 export default function Index() {
     const [state, setState] = useState<IndexState>({

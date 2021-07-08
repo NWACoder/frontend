@@ -42,7 +42,7 @@ function useProvideAuth() {
         }
     }, []);
 
-    const signin = async (email: string, password: string) => {
+    const signin = async (_email: string, _password: string) => {
         // Signin
         // TODO Authenticate User
         // TODO Handle Error
@@ -51,7 +51,7 @@ function useProvideAuth() {
         setUser({ token });
         return { token };
     };
-    const signup = async (email: string, password: string) => {
+    const signup = async (_email: string, _password: string) => {
         // TODO Signup and Receive Token
         // TODO Handle Error
         const token = 'testToken';

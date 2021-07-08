@@ -1,4 +1,4 @@
-import React, { FormEvent, ReactEventHandler, useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import { useAuth } from '../../lib/context/useAuth';
 import { Modal } from './Modal';
 
