@@ -11,34 +11,39 @@ export default function Index() {
     return (
         <Layout>
             <main className="flex flex-col flex-grow items-center w-full text-center">
-                <SnippetCard
-                    files={1}
-                    forks={0}
-                    stars={0}
-                    title={'Title'}
-                    author="author"
-                />
-                <SnippetCard
-                    files={1}
-                    forks={0}
-                    stars={0}
-                    title={'Title'}
-                    author="author"
-                />
-                <SnippetCard
-                    files={1}
-                    forks={0}
-                    stars={0}
-                    title={'Title'}
-                    author="author"
-                />
-                <SnippetCard
-                    files={1}
-                    forks={0}
-                    stars={0}
-                    title={'Title'}
-                    author="author"
-                />
+                <button className="flex bg-red-300 py-2 px-3 rounded text-black hover:bg-red-400">
+                    Create Snippet
+                </button>
+                <div className="flex flex-row flex-wrap justify-center">
+                    <SnippetCard
+                        files={1}
+                        forks={0}
+                        stars={0}
+                        title={'Title'}
+                        author="author"
+                    />
+                    <SnippetCard
+                        files={1}
+                        forks={0}
+                        stars={0}
+                        title={'Title'}
+                        author="author"
+                    />
+                    <SnippetCard
+                        files={1}
+                        forks={0}
+                        stars={0}
+                        title={'Title'}
+                        author="author"
+                    />
+                    <SnippetCard
+                        files={1}
+                        forks={0}
+                        stars={0}
+                        title={'Title'}
+                        author="author"
+                    />
+                </div>
             </main>
         </Layout>
     );

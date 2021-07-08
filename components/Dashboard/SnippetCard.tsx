@@ -17,12 +17,12 @@ export const SnippetCard = ({
 }: SnippetCard) => {
     return (
         <div
-            className="flex flex-col border border-gray-800 rounded my-4"
+            className="snippet-card flex flex-col border border-gray-800 rounded my-4 mx-4 hover:shadow-lg hover:border-blue-900 cursor-pointer"
             style={{ width: '450px' }}
         >
-            <div className="flex flex-row items-center bg-gray-800 text-white py-1 px-4">
+            <div className="snippet-card-header flex flex-row items-center bg-gray-800 text-white py-1 px-4">
                 <div className="mr-auto text-lg">JS</div>
-                <div className="flex flex-row text-center text-sm h-full">
+                <div className="flex flex-row text-center items-center text-sm h-full">
                     <div className="px-2">
                         {files === 1 ? `${files} file` : `${files} files`}
                     </div>
