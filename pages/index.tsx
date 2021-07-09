@@ -5,6 +5,7 @@ import { ChevronRightIcon } from '@heroicons/react/solid';
 import { useEffect, useState } from 'react';
 import { IndexState } from '../types';
 import { SnippetCard } from '../components/Common/SnippetCard';
+import { UserCard } from '../components/Common/UserCard';
 
 export default function Index() {
     const [state, setState] = useState<IndexState>({
@@ -60,7 +61,7 @@ export default function Index() {
 
                 <div className="flex items-center justify-center w-full h-4 border-t mt-14 mb-14"></div>
 
-                <div className="w-full space-y-2.5 grid grid-cols-2 space-x-1.5">
+                <div className="w-full grid grid-cols-2 gap-4">
                     <SnippetCard />
                     <SnippetCard />
                     <SnippetCard />
@@ -94,6 +95,7 @@ export default function Index() {
                 </div>
             </main>
 
+            <UserCard />
             <footer className="flex items-center justify-center w-full h-4 border-t mt-16"></footer>
         </div>
     );
