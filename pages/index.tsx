@@ -57,13 +57,18 @@ export default function Index() {
                         <div className="bg-black w-72 h-48 absolute"></div>
                     </div>
                 </div>
+
                 <div className="flex items-center justify-center w-full h-4 border-t mt-14 mb-14"></div>
-                <div className="w-full space-y-2 space-x-1.5 grid grid-cols-2 ">
+
+                <div className="w-full space-y-2.5 grid grid-cols-2 space-x-1.5">
+                    <SnippetCard />
+                    <SnippetCard />
                     <SnippetCard />
                     <SnippetCard />
                     <SnippetCard />
                     <SnippetCard />
                 </div>
+
                 <div className="mt-28">
                     <div className="text-2xl font-thin sm:my-8">
                         Community Stats
