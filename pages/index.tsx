@@ -60,7 +60,7 @@ export default function Index() {
 
                 <div className="flex items-center justify-center w-full h-4 border-t mt-14 mb-14"></div>
 
-                <div className="w-full space-y-2.5 grid grid-cols-2 space-x-1.5">
+                <div className="w-full grid grid-cols-2 gap-4">
                     <SnippetCard />
                     <SnippetCard />
                     <SnippetCard />
