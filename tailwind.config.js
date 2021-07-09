@@ -9,6 +9,9 @@ module.exports = {
             colors: {
                 indigo: '#B5EAEA',
             },
+            boxShadow: {
+                inner: 'inset 2px 4px 0 0 rgba(255, 255, 255, .5)',
+            },
         },
     },
     variants: {
