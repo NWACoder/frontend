@@ -1,7 +1,7 @@
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import Link from 'next/link';
 import React, { ReactEventHandler, useState } from 'react';
-import { useAuth, User } from '../../lib/context/useAuth';
+import { useAuth } from '../../lib/context/useAuth';
 
 export const Header = ({
     handleLogin,
