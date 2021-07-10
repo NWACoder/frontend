@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
@@ -6,6 +7,7 @@ import { Modal } from './Modal';
 import { useAuth } from '../../lib/context/useAuth';
 
 export const SignupModal = ({ handleClose }: { handleClose: () => void }) => {
+    const router = useRouter();
     const auth = useAuth();
     const validationSchema = Yup.object().shape({
         email: Yup.string()
@@ -47,6 +49,7 @@ export const SignupModal = ({ handleClose }: { handleClose: () => void }) => {
         const user = await auth.signup(email, password, username);
         if (user !== null) {
             handleClose();
+            router.push('/user/dashboard');
         }
         // TODO handle errors
     };

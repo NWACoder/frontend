@@ -1,8 +1,10 @@
 import React, { FormEvent, useState } from 'react';
+import { useRouter } from 'next/router';
 import { useAuth } from '../../lib/context/useAuth';
 import { Modal } from './Modal';
 
 export const LoginModal = ({ handleClose }: { handleClose: () => void }) => {
+    const router = useRouter();
     const auth = useAuth();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -13,6 +15,7 @@ export const LoginModal = ({ handleClose }: { handleClose: () => void }) => {
         const error = await auth.signin(username, password);
         if (!error) {
             handleClose();
+            router.push('/user/dashboard');
         } else {
             setError(error.error);
         }
