@@ -1,5 +1,5 @@
 export interface IndexState {
-    users: number;
-    snippets: number;
-    qa: number;
+    Users: number;
+    Snippets: number;
+    Challenges: number;
 }
