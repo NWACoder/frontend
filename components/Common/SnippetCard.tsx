@@ -9,7 +9,9 @@ export const SnippetCard = () => {
                     <p className="inline-block mr-2">{0} Stars</p>
                 </span>
             </div>
-            <p className="rounded-b-md w-full text-gray-900">lorem Ipsum</p>
+            <div>
+                <p className="rounded-b-md w-full text-gray-900">lorem Ipsum</p>
+            </div>
         </div>
     );
 };
