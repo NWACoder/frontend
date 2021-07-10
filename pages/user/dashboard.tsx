@@ -9,7 +9,7 @@ export default function Index() {
     }, []);
 
     return (
-        <Layout>
+        <Layout protectedRoute={true}>
             <main className="flex flex-col flex-grow items-center w-full text-center">
                 <button className="flex bg-red-300 py-2 px-3 rounded text-black hover:bg-red-400">
                     Create Snippet
