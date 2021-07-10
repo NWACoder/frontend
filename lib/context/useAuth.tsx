@@ -19,7 +19,11 @@ interface AuthContext {
         email: string,
         password: string
     ) => Promise<void | { error: string }>;
-    signup: (email: string, password: string) => Promise<void>;
+    signup: (
+        email: string,
+        password: string,
+        username: string
+    ) => Promise<void | { error: string }>;
     signout: () => void;
 }
 
@@ -54,7 +58,6 @@ function useProvideAuth() {
     }, []);
 
     const signin = async (username: string, password: string) => {
-        // TODO Handle Error
         try {
             const res = await nonAuthAxios().post('/auth/login', {
                 username,
@@ -74,17 +77,28 @@ function useProvideAuth() {
                 }
             }
         } catch (error) {
-            console.log(error.message);
             return { error: 'Invalid username or password' };
         }
     };
-    const signup = async (_email: string, _password: string) => {
-        // TODO Signup and Receive Token
-        // TODO Handle Error
-        const token = 'testToken';
-        localStorage.setItem('codeParcelUserToken', token);
-        // setUser({ token });
-        return;
+    const signup = async (
+        email: string,
+        password: string,
+        username: string
+    ) => {
+        try {
+            const res = await nonAuthAxios().post('/auth/register', {
+                username,
+                password,
+                email,
+            });
+            if (res.status === 201) {
+                const error = await signin(username, password);
+                if (!error) return;
+            }
+            throw new Error();
+        } catch (error) {
+            return { error: 'Error signing up, try again later' };
+        }
     };
     const signout = () => {
         localStorage.removeItem('codeParcelUserToken');
