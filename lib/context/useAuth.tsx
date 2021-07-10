@@ -6,7 +6,7 @@ import React, {
     useEffect,
 } from 'react';
 import jwt_decode from 'jwt-decode';
-import { authAxios, nonAuthAxios } from '../axios';
+import { nonAuthAxios } from '../axios';
 export interface User {
     username: string;
     sub: string;
