@@ -4,14 +4,17 @@ import { Modal } from './Modal';
 
 export const LoginModal = ({ handleClose }: { handleClose: () => void }) => {
     const auth = useAuth();
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState<string | null>(null);
 
     const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const user = await auth.signin(email, password);
-        if (user !== null) {
+        const error = await auth.signin(username, password);
+        if (!error) {
             handleClose();
+        } else {
+            setError(error.error);
         }
     };
 
@@ -28,17 +31,18 @@ export const LoginModal = ({ handleClose }: { handleClose: () => void }) => {
             //     )
             // }
         >
-            <div className="px-6 py-2">
+            <div className="px-6">
+                <span className="text-red-600 font-semibold">{error}</span>
                 <form className="grid grid-cols-1 gap-6" onSubmit={handleLogin}>
                     <label className="block">
-                        <span className="text-lg font-semibold">Email</span>
+                        <span className="text-lg font-semibold">Username</span>
                         <input
-                            type="email"
-                            name="email"
-                            value={email}
+                            type="text"
+                            name="username"
+                            value={username}
                             className="border-gray-300 mt-1 block w-full rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                             required
-                            onChange={({ target }) => setEmail(target.value)}
+                            onChange={({ target }) => setUsername(target.value)}
                         />
                     </label>
                     <label className="block">
@@ -49,7 +53,7 @@ export const LoginModal = ({ handleClose }: { handleClose: () => void }) => {
                             value={password}
                             className="border-gray-300 mt-1 block w-full rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                             required
-                            minLength={6}
+                            minLength={4}
                             onChange={({ target }) => setPassword(target.value)}
                         />
                     </label>
