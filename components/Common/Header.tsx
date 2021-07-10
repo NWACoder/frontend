@@ -22,7 +22,7 @@ export const Header = ({
             <div className="flex flex-row items-center sm:flex-grow whitespace-nowrap mx-auto">
                 <Link href="/">
                     <button className="px-6 py-2 hover:bg-gray-200 rounded font-thin text-lg">
-                        Browser
+                        Browse
                     </button>
                 </Link>
                 <Link href="/">
@@ -32,7 +32,7 @@ export const Header = ({
                 </Link>
                 <Link href="/">
                     <button className="px-6 py-2 font-thin text-lg hover:bg-gray-200 rounded">
-                        Q & A
+                        Challenges
                     </button>
                 </Link>
             </div>
