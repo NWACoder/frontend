@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
@@ -6,11 +7,13 @@ import { Modal } from './Modal';
 import { useAuth } from '../../lib/context/useAuth';
 
 export const SignupModal = ({ handleClose }: { handleClose: () => void }) => {
+    const router = useRouter();
     const auth = useAuth();
     const validationSchema = Yup.object().shape({
         email: Yup.string()
             .required('Email is required')
             .email('Email is invalid'),
+        username: Yup.string().required('Username is required'),
         password: Yup.string()
             .required('Password is required')
             .min(6, 'Password must be at least 6 characters')
@@ -35,12 +38,18 @@ export const SignupModal = ({ handleClose }: { handleClose: () => void }) => {
     type FormValues = {
         email: string;
         password: string;
+        username: string;
     };
 
-    const onSubmit: SubmitHandler<FormValues> = async ({ email, password }) => {
-        const user = await auth.signup(email, password);
+    const onSubmit: SubmitHandler<FormValues> = async ({
+        email,
+        password,
+        username,
+    }) => {
+        const user = await auth.signup(email, password, username);
         if (user !== null) {
             handleClose();
+            router.push('/user/dashboard');
         }
         // TODO handle errors
     };
@@ -67,6 +76,23 @@ export const SignupModal = ({ handleClose }: { handleClose: () => void }) => {
                         />
                         <div className="text-red-700 font-semibold">
                             {errors.email?.message}
+                        </div>
+                    </div>
+                    <div className="form-group">
+                        <label className="block text-lg font-semibold">
+                            Username
+                        </label>
+                        <input
+                            type="text"
+                            {...register('username')}
+                            className={`form-control mt-1 block w-full rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 ${
+                                errors.email
+                                    ? 'border-red-600'
+                                    : 'border-gray-300'
+                            }`}
+                        />
+                        <div className="text-red-700 font-semibold">
+                            {errors.username?.message}
                         </div>
                     </div>
 

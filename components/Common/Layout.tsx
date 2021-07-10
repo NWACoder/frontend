@@ -1,12 +1,26 @@
 import Head from 'next/head';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { useAuth } from '../../lib/context/useAuth';
 import { Header } from './Header';
 import { LoginModal } from './LoginModal';
 import { SignupModal } from './SignupModal';
 
-export const Layout = ({ children }: { children: React.ReactNode }) => {
+interface Layout {
+    children: React.ReactNode;
+    protectedRoute?: boolean;
+}
+
+export const Layout = ({ children, protectedRoute }: Layout) => {
+    const router = useRouter();
+    const auth = useAuth();
     const [loginModal, setLoginModal] = useState<boolean>(false);
     const [signupModal, setSignupModal] = useState<boolean>(false);
+
+    useEffect(() => {
+        if (protectedRoute && !auth.user) router.push('/');
+    }, [auth.user]);
+
     return (
         <div className="relative min-h-screen py-2">
             <div className="container flex flex-col min-h-full mx-auto">
