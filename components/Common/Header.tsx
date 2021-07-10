@@ -1,6 +1,6 @@
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import Link from 'next/link';
-import React, { ReactEventHandler, useEffect, useState } from 'react';
+import React, { ReactEventHandler, useState } from 'react';
 import { useAuth, User } from '../../lib/context/useAuth';
 
 export const Header = ({
@@ -11,13 +11,8 @@ export const Header = ({
     handleSignup: ReactEventHandler;
 }) => {
     const auth = useAuth();
-    const [user, setUser] = useState<User | null>(null);
 
-    useEffect(() => {
-        console.log(auth.user);
-        setUser(auth.user);
-    }, [auth.user]);
-
+    const { user } = auth;
     return (
         <header className="flex flex-row font-thin flex-wrap">
             <div className="mr-8">
@@ -43,7 +38,7 @@ export const Header = ({
             </div>
             <div className="flex flex-row items-center text-lg mx-auto my-2">
                 {user ? (
-                    <UserNav />
+                    <UserNav username={user.username} />
                 ) : (
                     <NonUserNav
                         handleLogin={handleLogin}
@@ -80,7 +75,7 @@ const NonUserNav = ({
     );
 };
 
-const UserNav = () => {
+const UserNav = ({ username }: { username: string }) => {
     const auth = useAuth();
     const [active, setActive] = useState(false);
 
@@ -97,7 +92,7 @@ const UserNav = () => {
                 }`}
                 onClick={() => setActive((state) => !state)}
             >
-                <div className="mr-4">Jessica A.</div>
+                <div className="mr-4">{username}</div>
                 <div className="w-6">
                     <ChevronDownIcon className="w-8 -mr-2" />
                 </div>
