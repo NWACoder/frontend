@@ -18,7 +18,7 @@ export const Layout = ({ children, protectedRoute }: Layout) => {
     const [signupModal, setSignupModal] = useState<boolean>(false);
 
     useEffect(() => {
-        if (protectedRoute && !auth.user) router.push('/');
+        if (protectedRoute && !auth.user && auth.isLoaded) router.push('/');
     }, [auth.user]);
 
     return (
