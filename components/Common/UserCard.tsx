@@ -7,8 +7,8 @@ export const UserCard = () => {
                 </p>
             </div>
             <div className="grid grid-rows-3 w-full bg-blue-300 border-blue-300 rounded-tr-md">
-                <div className="row-span-1 justify-self-center">
-                    <img className="relative border-2 bg-red-500 rounded-full h-28 w-28 -bottom-12"></img>
+                <div className="row-span-1 justify-self-center bg-blue-400 w-full">
+                    <img className="justify-center relative border-2 bg-red-500 rounded-full left-24 h-28 w-28 -bottom-12"></img>
                 </div>
                 <div className="border-t-2 border-red-200 row-span-2 rounded-br-2">
                     <div className="flex mt-32 justify-center">

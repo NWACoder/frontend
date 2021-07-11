@@ -4,7 +4,6 @@ import { Header } from '../components/Common/Header';
 import { ChevronRightIcon } from '@heroicons/react/solid';
 import { useEffect, useState } from 'react';
 import { IndexState } from '../types';
-import { SnippetCard } from '../components/Common/SnippetCard';
 import { UserCard } from '../components/Common/UserCard';
 
 export default function Index() {
