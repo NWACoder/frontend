@@ -1,28 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { IndexState } from '../../types';
-    
+import { getCommunityStats } from '../../api/site/stats';
+
 export const CommunityStats = () => {
 	
 	const [state, setState] = useState<IndexState>({
-	    Users: 0,
-	    Snippets: 0,
-	    Challenges: 0,
+		Users: 0,
+		Snippets: 0,
+		Challenges: 0,
 	});
 
 	useEffect(() => {
-	    const fetchData = async () => {
-	        try {
-	        	// api endpoint
-	            // const res = await fetch('http://localhost:3000/site/community-stats');
-	            // test
-	            const res = await fetch('../../api/mockCommunityStats');
-	            const data = await res.json();
-	            setState(data.value);
-	        } catch (error) {
-	            //handle error
-	        }
+	    const communityStats = async () => {
+	    	const res = await getCommunityStats();
+	    	setState(res.value);
 	    };
-	    fetchData();
+	    communityStats();
 	}, []);
 
 	const { Users, Snippets, Challenges } = state;

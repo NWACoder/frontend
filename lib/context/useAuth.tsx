@@ -25,6 +25,7 @@ interface AuthContext {
         username: string
     ) => Promise<void | { error: string }>;
     signout: () => void;
+    isLoaded: boolean;
 }
 
 const authContext = createContext<AuthContext | undefined>(undefined);
@@ -44,6 +45,7 @@ export const useAuth = () => {
 
 function useProvideAuth() {
     const [user, setUser] = useState<User | null>(null);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
         const token = localStorage.getItem('codeParcelUserToken');
@@ -55,6 +57,7 @@ function useProvideAuth() {
                 return;
             }
         }
+        setIsLoaded(true);
     }, []);
 
     const signin = async (username: string, password: string) => {
@@ -107,6 +110,7 @@ function useProvideAuth() {
 
     return {
         user,
+        isLoaded,
         signin,
         signup,
         signout,
