@@ -25,7 +25,7 @@ export const Layout = ({ children, protectedRoute }: Layout) => {
         <div className="relative min-h-screen py-2">
             <div className="container flex flex-col min-h-full mx-auto">
                 <Head>
-                    <title>Create Next App</title>
+                    <title>Code Parcel</title>                
                     {/* <link
                         rel="preconnect"
                         href="https://fonts.googleapis.com"
