@@ -3,3 +3,42 @@ export interface IndexState {
     Snippets: number;
     Challenges: number;
 }
+
+export enum ActionType {
+    UPDATE_TITLE = 'UPDATE_TITLE',
+    SELECT_ITEM = 'SELECT_ITEM',
+    UPDATE_ITEM_NAME = 'UPDATE_ITEM_NAME',
+    ADD_ITEM = 'ADD_ITEM',
+    DELETE_ITEM = 'DELETE_ITEM',
+    UPDATE_ITEM_CONTENT = 'UPDATE_ITEM_CONTENT',
+    UPDATE_SNIPPET_PUBLIC = 'UPDATE_SNIPPET_PUBLIC',
+}
+
+export interface EditorState {
+    snippet: Snippet;
+    selectedItemID: string | null;
+    newItemID: string | null;
+    isMarkDown: boolean;
+}
+
+export interface Snippet {
+    id: string;
+    title: string;
+    items: Item[];
+    tags: Tag[];
+    public: boolean;
+}
+
+export interface Tag {
+    id: string;
+    name: string;
+}
+export interface Item {
+    id: string;
+    name: string;
+    content: string;
+}
+export interface Action {
+    type: ActionType;
+    payload?: any;
+}
