@@ -25,21 +25,20 @@ export const Layout = ({ children, protectedRoute }: Layout) => {
         <div className="relative min-h-screen py-2">
             <div className="container flex flex-col min-h-full mx-auto">
                 <Head>
-                    <title>Code Parcel</title>
-                    <link rel="icon" href="/favicon.ico" />
-                    <link
+                    <title>Code Parcel</title>                
+                    {/* <link
                         rel="preconnect"
                         href="https://fonts.googleapis.com"
-                    />
-                    <link
+                    /> */}
+                    {/* <link
                         rel="preconnect"
                         href="https://fonts.gstatic.com"
                         crossOrigin="true"
-                    />
-                    <link
+                    /> */}
+                    {/* <link
                         href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap"
                         rel="stylesheet"
-                    />
+                    /> */}
                 </Head>
                 <Header
                     handleLogin={() => setLoginModal(true)}
