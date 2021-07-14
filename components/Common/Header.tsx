@@ -13,6 +13,23 @@ export const Header = ({
     const auth = useAuth();
 
     const { user } = auth;
+
+    const navItems = [
+    	{path:"snippets" , name:"Browse"},
+    	{path:"search" , name:"Search"},
+    	{path:"challenges" , name:"Challenges"},
+    ]
+
+    const nav = navItems.map( item => { 
+    	return (
+    		<Link href={item.path}>
+				<button className="px-6 py-2 hover:bg-gray-200 rounded font-thin text-lg">
+					{item.name}
+				</button>
+			</Link>
+		)
+    })
+
     return (
         <header className="flex flex-row font-thin flex-wrap">
             <div className="mr-8">
@@ -20,21 +37,7 @@ export const Header = ({
                 <div className="text-lg -mt-3 ml-5 font-thin">snippets</div>
             </div>
             <div className="flex flex-row items-center sm:flex-grow whitespace-nowrap mx-auto">
-                <Link href="/">
-                    <button className="px-6 py-2 hover:bg-gray-200 rounded font-thin text-lg">
-                        Browse
-                    </button>
-                </Link>
-                <Link href="/">
-                    <button className="px-6 py-2 font-thin text-lg hover:bg-gray-200 rounded">
-                        Search
-                    </button>
-                </Link>
-                <Link href="/">
-                    <button className="px-6 py-2 font-thin text-lg hover:bg-gray-200 rounded">
-                        Challenges
-                    </button>
-                </Link>
+                {nav}
             </div>
             <div className="flex flex-row items-center text-lg mx-auto my-2">
                 {user ? (
