@@ -1,11 +1,4 @@
-import React, {
-    ChangeEventHandler,
-    Dispatch,
-    useEffect,
-    useReducer,
-    useState,
-} from 'react';
-import Link from 'next/link';
+import React, { ChangeEventHandler, useEffect, useReducer } from 'react';
 import dynamic from 'next/dynamic';
 import { Layout } from '../../components/Common/Layout';
 import { initialState, reducer } from '../../lib/reducer/editor';

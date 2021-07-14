@@ -1,4 +1,4 @@
-import React, { ChangeEvent, EventHandler, useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import { TrashIcon } from '@heroicons/react/solid';
 import { Item } from '../../types';
 
