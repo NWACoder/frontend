@@ -1,4 +1,4 @@
-export default function Example() {
+export default function NewsLetter() {
   return (
     <div className="bg-white">
       <div className="max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:py-32 lg:px-8 lg:flex lg:items-center">

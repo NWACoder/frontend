@@ -18,11 +18,11 @@ export const SnippetCard = ({
     id,
     author,
 }: SnippetCard) => {
-    return (
+    return (<Link href={"snippets/"+id} >
         <div className="w-full snippet-card border border-gray-800 rounded  hover:shadow-lg hover:border-blue-900 cursor-pointer">
             <div className="snippet-card-header flex flex-row items-center bg-gray-800 text-white py-1 px-4">
                 <div className="mr-auto text-lg">
-                <Link href={"snippets/"+id} >JS</Link>
+                JS
                 </div>
                 <div className="flex flex-row text-center items-center text-sm h-full">
                     <div className="px-2">
@@ -40,6 +40,6 @@ export const SnippetCard = ({
                 <div className="text-lg mr-auto">{title}</div>
                 <div>by: {author}</div>
             </div>
-        </div>
+        </div></Link>
     );
 };
