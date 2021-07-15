@@ -10,7 +10,7 @@ export const ViewSnippet = ({ snippet }: SnippetCard) => {
     const { items, title, user_id } = snippet;
     const author = user_id ? user_id.username : 'unknown';
     return (
-        <Link href={`/snippets/{snippet._id}`}>
+        <Link href={`/snippets/${snippet._id}`}>
             <div
                 className="w-full border border-gray-800 rounded hover:shadow-lg hover:border-blue-900 cursor-pointer"
             >
