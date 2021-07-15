@@ -18,3 +18,13 @@ export const getLatestSnippets = async (size: number) => {
 		console.error(error);
     }
 };
+
+
+export const getSnippet = async (id: string) => {
+    try {
+		const response = await nonAuthAxios().get(`snippets/${id}`);
+		return response.data;
+    } catch (error) {
+		console.error(error);
+    }
+};

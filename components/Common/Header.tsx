@@ -15,9 +15,9 @@ export const Header = ({
     const { user } = auth;
 
     const navItems = [
-    	{path:"snippets" , name:"Browse"},
-    	{path:"challenges" , name:"Challenges"},
-    	{path:"about" , name:"About"},
+    	{path:"/snippets" , name:"Browse"},
+    	{path:"/challenges" , name:"Challenges"},
+    	{path:"/about" , name:"About"},
     ]
 
     const nav = navItems.map( item => { 
