@@ -21,7 +21,7 @@ export const CommunityStats = () => {
     const { Users, Snippets, Challenges } = state;
 
     return (
-        <div className="mt-16">
+        <div className="mt-16 flex flex-col flex-grow items-center w-full text-center">
             <div className="text-2xl font-thin sm:my-8">Community Stats</div>
             <div className="sm:flex sm:flex-row sm:flex-wrap">
                 <div className="sm:border-r sm:border-b-0 sm:px-16 sm:py-0 py-8 border-b max-w-max mx-auto">

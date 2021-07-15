@@ -2,6 +2,7 @@ import { Layout } from '../components/Common/Layout';
 import React from 'react';
 import { CommunityStats } from '../components/site/community-stats';
 import { Hero } from '../components/site/hero'
+import { LatestSnippets } from '../components/Snippets/latestSnippets';
 
 export default function Index() {
 	
@@ -14,9 +15,10 @@ export default function Index() {
     return (
         <>
             <Layout>
-                <main className="flex flex-col flex-grow items-center w-full text-center">
+                <main className="">
                     <Hero { ... heroData}/>
                     <CommunityStats/>
+                    <LatestSnippets/>
                 </main>
             </Layout>
         </>

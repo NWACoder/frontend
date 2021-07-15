@@ -16,13 +16,12 @@ export const Header = ({
 
     const navItems = [
     	{path:"snippets" , name:"Browse"},
-    	{path:"search" , name:"Search"},
     	{path:"challenges" , name:"Challenges"},
     ]
 
     const nav = navItems.map( item => { 
     	return (
-    		<Link href={item.path}>
+    		<Link href={item.path} key={item.name}>
 				<button className="px-6 py-2 hover:bg-gray-200 rounded font-thin text-lg">
 					{item.name}
 				</button>
@@ -33,8 +32,12 @@ export const Header = ({
     return (
         <header className="flex flex-row font-thin flex-wrap">
             <div className="mr-8">
-                <div className="text-4xl font-thin">Code</div>
-                <div className="text-lg -mt-3 ml-5 font-thin">snippets</div>
+            	<Link href="/">
+	                <div className="cursor-pointer">
+	                	<div className="text-4xl font-thin">Code</div>
+	                	<div className="text-lg -mt-3 ml-5 font-thin">snippets</div>
+	                </div>
+                </Link>
             </div>
             <div className="flex flex-row items-center sm:flex-grow whitespace-nowrap mx-auto">
                 {nav}

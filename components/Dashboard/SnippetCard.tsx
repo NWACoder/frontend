@@ -17,8 +17,8 @@ export const SnippetCard = ({
 }: SnippetCard) => {
     return (
         <div
-            className="snippet-card flex flex-col border border-gray-800 rounded my-4 mx-4 hover:shadow-lg hover:border-blue-900 cursor-pointer"
-            style={{ width: '450px' }}
+            className="w-full snippet-card border border-gray-800 rounded  hover:shadow-lg hover:border-blue-900 cursor-pointer"
+          
         >
             <div className="snippet-card-header flex flex-row items-center bg-gray-800 text-white py-1 px-4">
                 <div className="mr-auto text-lg">JS</div>
