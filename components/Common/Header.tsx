@@ -17,6 +17,7 @@ export const Header = ({
     const navItems = [
     	{path:"snippets" , name:"Browse"},
     	{path:"challenges" , name:"Challenges"},
+    	{path:"about" , name:"About"},
     ]
 
     const nav = navItems.map( item => { 

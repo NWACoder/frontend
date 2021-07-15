@@ -17,7 +17,7 @@ export const LatestSnippets = () => {
 
     return (
         <div className="mt-4">
-        	<div>
+        	<div className="text-2xl p-4 bg-blue-300 w-max my-2">
         		Latest Snippets
         	</div>
         	<div className="grid grid-cols-3 gap-4">
