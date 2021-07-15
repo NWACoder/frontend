@@ -5,6 +5,7 @@ import { useAuth } from '../../lib/context/useAuth';
 import { Header } from './Header';
 import { LoginModal } from './LoginModal';
 import { SignupModal } from './SignupModal';
+import Footer from './Footer';
 
 interface Layout {
     children: React.ReactNode;
@@ -45,7 +46,7 @@ export const Layout = ({ children, protectedRoute }: Layout) => {
                     handleSignup={() => setSignupModal(true)}
                 />
                 {children}
-                <footer className="flex items-center justify-center w-full h-4 border-t mt-16"></footer>
+                <Footer/>
             </div>
             {loginModal && (
                 <LoginModal handleClose={() => setLoginModal(false)} />
