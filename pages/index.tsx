@@ -19,7 +19,7 @@ export default function Index() {
                 <main className="">
                     <Hero { ... heroData}/>
                     <CommunityStats/>
-                    {<LatestSnippets/>}
+                    <LatestSnippets/>
                     <NewsLetter/>
                 </main>
             </Layout>
