@@ -22,7 +22,7 @@ export const LatestSnippets = () => {
         	</div>
         	<div className="grid grid-cols-3 gap-4">
         		{ state.map( (item: any) => {
-                	return (<ViewSnippet snippet={item} />)
+                	return (<ViewSnippet key={item._id} snippet={item} />)
             	})}
         	</div>
         	
