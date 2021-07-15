@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getLatestSnippets } from '../../api/snippet';
-import { SnippetCard } from '../../components/Dashboard/SnippetCard';
+import { ViewSnippet } from './ViewSnippet';
 
 export const LatestSnippets = () => {
     const [state, setState] = useState<any>([]);
@@ -22,7 +22,7 @@ export const LatestSnippets = () => {
         	</div>
         	<div className="grid grid-cols-3 gap-4">
         		{ state.map( (item: any) => {
-                	return (<SnippetCard key={item._id} id={item._id} files={1} forks={0} stars={0} title={item.title} author={item.user_id.username} />)
+                	return (<ViewSnippet snippet={item} />)
             	})}
         	</div>
         	
