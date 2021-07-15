@@ -15,20 +15,20 @@ export const Header = ({
     const { user } = auth;
 
     const navItems = [
-    	{path:"snippets" , name:"Browse"},
-    	{path:"search" , name:"Search"},
-    	{path:"challenges" , name:"Challenges"},
-    ]
+        { path: 'snippets', name: 'Browse' },
+        { path: 'search', name: 'Search' },
+        { path: 'challenges', name: 'Challenges' },
+    ];
 
-    const nav = navItems.map( item => { 
-    	return (
-    		<Link href={item.path}>
-				<button className="px-6 py-2 hover:bg-gray-200 rounded font-thin text-lg">
-					{item.name}
-				</button>
-			</Link>
-		)
-    })
+    const nav = navItems.map((item) => {
+        return (
+            <Link href={item.path} key={item.name}>
+                <button className="px-6 py-2 hover:bg-gray-200 rounded font-thin text-lg">
+                    {item.name}
+                </button>
+            </Link>
+        );
+    });
 
     return (
         <header className="flex flex-row font-thin flex-wrap">
