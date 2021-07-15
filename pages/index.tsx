@@ -3,6 +3,7 @@ import React from 'react';
 import { CommunityStats } from '../components/site/community-stats';
 import { Hero } from '../components/site/hero'
 import { LatestSnippets } from '../components/Snippets/latestSnippets';
+import NewsLetter from '../components/Common/NewsLetter';
 
 export default function Index() {
 	
@@ -19,6 +20,7 @@ export default function Index() {
                     <Hero { ... heroData}/>
                     <CommunityStats/>
                     <LatestSnippets/>
+                    <NewsLetter/>
                 </main>
             </Layout>
         </>
