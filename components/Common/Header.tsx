@@ -15,6 +15,7 @@ export const Header = ({
     const { user } = auth;
 
     const navItems = [
+
     	{path:"/snippets" , name:"Snippets"},
     	{path:"/challenges" , name:"Challenges"},
     	{path:"/about" , name:"About"},

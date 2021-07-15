@@ -1,25 +1,33 @@
-import { Action, EditorState, Item } from '../../types';
+import { Action, EditorState, Item, Snippet } from '../../types';
 
 const initialState: EditorState = {
     snippet: {
-        id: '0',
+        _id: '0',
         title: '',
-        items: [
-            { id: '0', name: 'index.html', content: '<html></html>' },
-            { id: '1', name: 'App.js', content: 'const test = "test"' },
-        ],
+        items: [{ id: '0', name: 'untitled.js', content: '' }],
         tags: [],
         public: false,
     },
-    selectedItemID: null,
+    selectedItemID: '0',
     newItemID: null,
     isMarkDown: false,
+    mode: 'editor',
 };
 
 function reducer(state: EditorState, action: Action) {
     const { type, payload } = action;
     const { snippet } = state;
     switch (type) {
+        case 'INIT_SNIPPET': {
+            const newState = { ...state, snippet: payload as Snippet };
+            const selectedItem =
+                payload.items.length === 0 ? null : payload.items[0];
+            if (!selectedItem) return newState;
+            newState.selectedItemID = selectedItem.id;
+            const extIndex = selectedItem.name.lastIndexOf('.');
+            newState.isMarkDown = selectedItem.name.slice(extIndex) === '.md';
+            return newState;
+        }
         case 'UPDATE_TITLE': {
             return { ...state, snippet: { ...snippet, title: payload } };
         }
@@ -55,7 +63,7 @@ function reducer(state: EditorState, action: Action) {
         }
         case 'ADD_ITEM': {
             const id = String(Math.floor(Math.random() * 10000000));
-            const newItem: Item = { id, name: 'new file.js', content: '' };
+            const newItem: Item = { id, name: 'untitled.js', content: '' };
             const items = [...snippet.items, newItem];
             return {
                 ...state,
@@ -86,7 +94,9 @@ function reducer(state: EditorState, action: Action) {
         case 'UPDATE_SNIPPET_PUBLIC': {
             return { ...state, snippet: { ...snippet, public: payload } };
         }
-
+        case 'UPDATE_EDITOR_MODE': {
+            return { ...state, mode: payload };
+        }
         default:
             throw new Error();
     }

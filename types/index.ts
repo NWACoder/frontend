@@ -12,21 +12,26 @@ export enum ActionType {
     DELETE_ITEM = 'DELETE_ITEM',
     UPDATE_ITEM_CONTENT = 'UPDATE_ITEM_CONTENT',
     UPDATE_SNIPPET_PUBLIC = 'UPDATE_SNIPPET_PUBLIC',
+    INIT_SNIPPET = 'INIT_SNIPPET',
+    UPDATE_EDITOR_MODE = 'UPDATE_EDITOR_MODE',
 }
 
+export type EditorMode = 'preview' | 'editor';
 export interface EditorState {
     snippet: Snippet;
     selectedItemID: string | null;
     newItemID: string | null;
     isMarkDown: boolean;
+    mode: EditorMode;
 }
 
 export interface Snippet {
-    id: string;
+    _id: string;
     title: string;
     items: Item[];
     tags: Tag[];
     public: boolean;
+    user_id?: { _id: string; username: string };
 }
 
 export interface Tag {
