@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import { Item, Snippet } from '../../types';
+import { Snippet } from '../../types';
 
 interface SnippetCard {
     snippet: Snippet;
