@@ -1,8 +1,8 @@
 import React from 'react';
 import CodeEditor from '@monaco-editor/react';
-import Markdown from 'markdown-to-jsx';
 import { EditorMode, Item } from '../../types';
 import { languageDetect } from '../../lib/utils/languageDetect';
+import { MarkdownPreview } from './MarkdownPreview';
 
 const defaultItem: Item = {
     id: '0',
@@ -40,13 +40,10 @@ export const Editor = ({
                     language={language}
                     options={{ minimap: { enabled: false } }}
                     onChange={(value) => handleChangeItemContent({ value, id })}
+                    saveViewState={false}
                 />
             </div>
-            <div
-                className={`h-full markdown text-left px-2 overflow-y-auto ${mode === 'preview' ? '' : 'hidden'}`}
-            >
-                <Markdown children={content} />
-            </div>
+            {mode === 'preview' && <MarkdownPreview content={content} />}
         </div>
     );
 };

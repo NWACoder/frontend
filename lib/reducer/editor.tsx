@@ -1,42 +1,56 @@
-import { Action, EditorState, Item, Snippet } from '../../types';
+import { Action, EditorState, Item } from '../../types';
 
-const initialState: EditorState = {
-    snippet: {
-        _id: '0',
-        title: '',
-        items: [{ id: '0', name: 'untitled.js', content: '' }],
-        tags: [],
-        public: false,
-    },
-    selectedItemID: '0',
-    newItemID: null,
-    isMarkDown: false,
-    mode: 'editor',
+export const init = (state: EditorState) => {
+    const { snippet } = state;
+    const selectedItem = snippet.items.length === 0 ? null : snippet.items[0];
+    if (!selectedItem) return state;
+    state.selectedItemID = selectedItem.id;
+    const extIndex = selectedItem.name.lastIndexOf('.');
+    state.isMarkDown = selectedItem.name.slice(extIndex) === '.md';
+    return state;
 };
 
-function reducer(state: EditorState, action: Action) {
+export const initialState = (): EditorState => {
+    const state = {
+        selectedItemID: '0',
+        newItemID: null,
+        isMarkDown: false,
+        mode: 'editor',
+        snippet: {
+            _id: '0',
+            title: '',
+            items: [{ id: '0', name: 'untitled.js', content: '' }],
+            tags: [],
+            public: false,
+        },
+    };
+
+    return Object.assign({}, state) as EditorState;
+};
+
+export const reducer = (state: EditorState, action: Action) => {
     const { type, payload } = action;
     const { snippet } = state;
     switch (type) {
         case 'INIT_SNIPPET': {
-            const newState = { ...state, snippet: payload as Snippet };
-            const selectedItem =
-                payload.items.length === 0 ? null : payload.items[0];
-            if (!selectedItem) return newState;
-            newState.selectedItemID = selectedItem.id;
-            const extIndex = selectedItem.name.lastIndexOf('.');
-            newState.isMarkDown = selectedItem.name.slice(extIndex) === '.md';
-            return newState;
+            const newState = { ...state, snippet: payload };
+            return init(newState);
         }
         case 'UPDATE_TITLE': {
             return { ...state, snippet: { ...snippet, title: payload } };
         }
         case 'SELECT_ITEM': {
             const item = snippet.items.find((item) => item.id === payload);
-            if (!item) return state;
+            if (!item || state.selectedItemID === payload) return state;
             const extIndex = item.name.lastIndexOf('.');
             const isMarkDown = item.name.slice(extIndex) === '.md';
-            return { ...state, selectedItemID: payload, isMarkDown };
+            const newState: EditorState = {
+                ...state,
+                selectedItemID: payload,
+                isMarkDown,
+                mode: 'editor',
+            };
+            return newState;
         }
         case 'UPDATE_ITEM_NAME': {
             const { value, id } = payload;
@@ -49,7 +63,12 @@ function reducer(state: EditorState, action: Action) {
                 }
                 return item;
             });
-            return { ...state, snippet: { ...snippet, items }, isMarkDown };
+            return {
+                ...state,
+                snippet: { ...snippet, items },
+                isMarkDown,
+                mode: isMarkDown ? state.mode : 'editor',
+            };
         }
         case 'UPDATE_ITEM_CONTENT': {
             const { value, id } = payload;
@@ -82,6 +101,7 @@ function reducer(state: EditorState, action: Action) {
                 ...state,
                 snippet: { ...snippet, items },
                 selectedItemID: newSelectedID,
+                mode: 'editor',
             };
             const item = snippet.items.find(
                 (item) => item.id === newSelectedID
@@ -100,6 +120,4 @@ function reducer(state: EditorState, action: Action) {
         default:
             throw new Error();
     }
-}
-
-export { initialState, reducer };
+};
