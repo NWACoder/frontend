@@ -5,11 +5,11 @@ import Search from "../../components/Search/search";
 
 export default function Index() {
 	
-	const heroData = {
-	    title: "Browse and create code snippets",
-	    subtitle: "Snippets are small pieces of code you don't need to remember.",
-	    buttonText: "Checkout our example"
-	}
+	// const heroData = {
+	//     title: "Browse and create code snippets",
+	//     subtitle: "Snippets are small pieces of code you don't need to remember.",
+	//     buttonText: "Checkout our example"
+	// }
 
     return (
         <>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Layout } from '../../components/Common/Layout';
 import { Snippet } from '../../types';
-import { fetchSnippet } from '../../api/user/editor';
+import { fetchSnippet, updateSnippet } from '../../api/user/editor';
 import { CodeEditor } from '../../components/CodeEditor';
 import { useRouter } from 'next/router';
 
@@ -24,7 +24,14 @@ export default function EditSnippet() {
         fetch();
     }, [id]);
 
-    const handleSubmit = async (snippet: Snippet) => {};
+    const handleSubmit = async (snippet: Snippet) => {
+        try {
+            await updateSnippet(snippet);
+            router.push('/user/dashboard');
+        } catch (error) {
+            throw new Error('Unable to save snippet');
+        }
+    };
 
     return (
         <Layout protectedRoute={true}>

@@ -1,6 +1,6 @@
 import React from 'react';
-import { ChevronRightIcon } from '@heroicons/react/solid';
-import Link from 'next/link';
+// import { ChevronRightIcon } from '@heroicons/react/solid';
+// import Link from 'next/link';
 
 export default function Search() {
 
