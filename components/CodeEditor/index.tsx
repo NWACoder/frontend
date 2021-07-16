@@ -5,7 +5,7 @@ import React, {
     useReducer,
 } from 'react';
 import dynamic from 'next/dynamic';
-import { initialState, reducer } from '../../lib/reducer/editor';
+import { init, initialState, reducer } from '../../lib/reducer/editor';
 import { SnippetFiles } from './SnippetFiles';
 import { ActionType, EditorMode, Snippet } from '../../types';
 const Select = dynamic(() => import('react-select'), {
@@ -24,14 +24,16 @@ const options = [
 
 interface CodeEditor {
     snippet?: Snippet;
-    handleCreateSnippet: (snippet: Snippet) => Promise<void>;
+    handleCreateSnippet: (
+        snippet: Snippet
+    ) => Promise<void | { error: string }>;
 }
 
 export const CodeEditor = ({
     snippet: _snippet,
     handleCreateSnippet,
 }: CodeEditor) => {
-    const [state, dispatch] = useReducer(reducer, initialState);
+    const [state, dispatch] = useReducer(reducer, initialState(), init);
 
     useEffect(() => {
         if (_snippet) {
@@ -109,8 +111,12 @@ export const CodeEditor = ({
 
     const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
         e.preventDefault();
-        const res = await handleCreateSnippet(state.snippet);
-        console.log(res);
+        try {
+            await handleCreateSnippet(state.snippet);
+        } catch (error) {
+            console.error(error);
+            // TODO handle error
+        }
     };
 
     const handleUpdateEditorMode: React.MouseEventHandler<HTMLButtonElement> =
