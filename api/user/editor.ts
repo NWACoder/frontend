@@ -8,7 +8,25 @@ export const createSnippet = async (snippet: Snippet) => {
             title,
             items,
             public: _public,
+            tags,
         });
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const updateSnippet = async (snippet: Snippet) => {
+    const { title, tags, items, public: _public, _id } = snippet;
+	console.log(items)
+    try {
+        const res = await authAxios().patch(`/snippets/${_id}`, {
+            title,
+            items,
+            public: _public,
+            tags,
+        });
+		console.log(res.data)
         return res.data;
     } catch (error) {
         console.log(error);
