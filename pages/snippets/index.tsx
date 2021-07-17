@@ -11,6 +11,7 @@ export default function Index() {
     useEffect(() => {
         const allSnippets = async () => {
             const res = await getAllSnippets();
+            if (!res) return;
             setState({ listItems: res });
         };
         allSnippets();

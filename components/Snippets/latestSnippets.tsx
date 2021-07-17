@@ -9,15 +9,14 @@ export const LatestSnippets = () => {
     useEffect(() => {
         const latestSnippets = async () => {
             const res = await getLatestSnippets(9);
-
-            setState([...res]);
+            if (!res) return;
+            setState(res);
         };
         latestSnippets();
     }, []);
 
     return (
         <div className="mt-4">
-            {' '}
             <div className="text-2xl p-4 bg-blue-300 w-max my-2">
                 Latest Snippets
             </div>
@@ -26,8 +25,6 @@ export const LatestSnippets = () => {
                     return <ViewSnippet key={item._id} snippet={item} />;
                 })}
             </div>
-            main
         </div>
     );
 };
-
