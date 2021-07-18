@@ -6,9 +6,10 @@ interface Hero {
     title: string;
     subtitle: string;
     buttonText: string;
+    image: string
 }
 
-export const Hero = ({ title, subtitle, buttonText}: Hero) => {
+export const Hero = ({ title, subtitle, buttonText, image}: Hero) => {
 	
 	return (
 		<div className="flex flex-row items-center justify-center xl:justify-between w-full flex-wrap-reverse mt-16">
@@ -33,7 +34,7 @@ export const Hero = ({ title, subtitle, buttonText}: Hero) => {
             >
                 <div className="bg-blue-300 w-full h-full absolute top-0 transform rotate-6 opacity-50"></div>
                 <div className="bg-red-300 w-full h-full absolute top-0 transform -rotate-6 opacity-50"></div>
-                <div className="bg-black w-full h-full absolute"></div>
+                <div className="bg-white w-full h-full absolute bg-contain bg-no-repeat bg-center" style={{backgroundImage: image}}></div>
             </div>
         </div>
 	)
