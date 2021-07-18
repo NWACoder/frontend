@@ -4,7 +4,7 @@ export default function Search({stateChanger}){
 
     const [state, setState] = useState<any>("");
 	
-	const handleChange = (e) => {
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     	setState(e);
   	}
 
