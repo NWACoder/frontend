@@ -174,6 +174,7 @@ export const CodeEditor = ({
                         <DetailRectangle value={0} name="star" />
                     </div>
                     <Select
+                    // @ts-ignore
                         options={options}
                         isMulti
                         name="langs"
