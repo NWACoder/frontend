@@ -1,5 +1,5 @@
 import { authAxios, nonAuthAxios } from '../lib/axios';
-
+// @ts-ignore
 export const createChallenge = async (data) => {
     try {
         const response = await authAxios().post(`challenges`,data);
