@@ -34,7 +34,7 @@ export const CommunityStats = () => {
                 </div>
                 <div className="sm:px-16 sm:py-0 py-8 max-w-max mx-auto">
                     <div className="text-2xl font-semibold">{Challenges}</div>
-                    <div className="font-thin mt-2">Q&A</div>
+                    <div className="font-thin mt-2">Challenges</div>
                 </div>
             </div>
         </div>
