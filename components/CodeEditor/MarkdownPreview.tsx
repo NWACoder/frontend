@@ -1,3 +1,4 @@
+// @ts-ignore
 import DOMPurify from 'dompurify';
 import Markdown from 'markdown-to-jsx';
 
