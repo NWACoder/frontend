@@ -28,3 +28,12 @@ export const getSnippet = async (id: string) => {
         console.error(`Failed to fetch snippet ID:${id}`);
     }
 };
+
+export const searchtSnippet = async (query: string) => {
+    try {
+        const response = await nonAuthAxios().get(`snippets/search?query=${query}`);
+        return response.data;
+    } catch (error) {
+        console.error(`Failed to search snippets`);
+    }
+};

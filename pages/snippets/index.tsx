@@ -4,9 +4,12 @@ import { getAllSnippets } from '../../api/snippet';
 import { ViewSnippet } from '../../components/Snippets/ViewSnippet';
 import Search from '../../components/Search/search';
 import PageHeader from '../../components/Common/PageHeader';
+import { searchtSnippet } from '../../api/snippet';
 
 export default function Index() {
     const [state, setState] = useState<any>({ listItems: [] });
+    const [search, setSearch] = useState<any>("");
+
 
     useEffect(() => {
         const allSnippets = async () => {
@@ -14,21 +17,31 @@ export default function Index() {
             if (!res) return;
             setState({ listItems: res });
         };
+
+        const searchtSnippets = async (query) => {
+	        const res = await searchtSnippet(query);
+	        console.log(res)
+	        if (!res) return;
+	        setState({ listItems: res });
+	    };
+
+    	searchtSnippets(search);
         allSnippets();
-    }, []);
+    }, [search]);
 
     const { listItems } = state;
+
     return (
         <>
             <Layout>
                 <main>
                     <PageHeader title="Snippets" />
 
-                    <Search />
+                    <Search stateChanger={setSearch}/>
 
                     <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-4">
                         {listItems.map((item: any) => {
-                            return <ViewSnippet snippet={item} />;
+                            return <ViewSnippet key={item._id} snippet={item} />;
                         })}
                     </div>
                 </main>

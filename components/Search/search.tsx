@@ -1,8 +1,12 @@
-import React from 'react';
-// import { ChevronRightIcon } from '@heroicons/react/solid';
-// import Link from 'next/link';
+import React, { useState } from 'react';
 
-export default function Search() {
+export default function Search({stateChanger}){
+
+    const [state, setState] = useState<any>("");
+	
+	const handleChange = (e) => {
+    	setState(e);
+  	}
 
 	return (
 	<div>
@@ -12,9 +16,10 @@ export default function Search() {
 	      name="search"
 	      placeholder="search"
 	      id="search"
+	      value={state} onChange={e => handleChange(e.target.value)}
 	      className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full pr-12 sm:text-sm border-gray-300 rounded-md"
 	    />
-	     <button type="submit"
+	     <button type="submit" onClick={() => {stateChanger(state); console.log("click")}}
             className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none">
             Search
           </button>
