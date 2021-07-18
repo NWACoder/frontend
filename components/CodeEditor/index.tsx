@@ -8,6 +8,7 @@ import dynamic from 'next/dynamic';
 import { init, initialState, reducer } from '../../lib/reducer/editor';
 import { SnippetFiles } from './SnippetFiles';
 import { ActionType, EditorMode, Snippet } from '../../types';
+// @ts-ignore
 const Select = dynamic(() => import('react-select'), {
     ssr: false,
 });
