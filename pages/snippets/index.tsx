@@ -10,7 +10,6 @@ export default function Index() {
     const [state, setState] = useState<any>({ listItems: [] });
     const [search, setSearch] = useState<any>("");
 
-
     useEffect(() => {
         const allSnippets = async () => {
             const res = await getAllSnippets();
@@ -18,9 +17,8 @@ export default function Index() {
             setState({ listItems: res });
         };
 
-        const searchtSnippets = async (query) => {
+        const searchtSnippets = async (query: string) => {
 	        const res = await searchtSnippet(query);
-	        console.log(res)
 	        if (!res) return;
 	        setState({ listItems: res });
 	    };
