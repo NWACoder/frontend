@@ -37,7 +37,7 @@ export const Header = ({
             	<Link href="/">
 	                <div className="cursor-pointer">
 	                	<div className="text-4xl font-thin">Code</div>
-	                	<div className="text-lg -mt-3 ml-5 font-thin">snippets</div>
+	                	<div className="text-lg -mt-3 ml-5 font-thin">Parcel</div>
 	                </div>
                 </Link>
             </div>
