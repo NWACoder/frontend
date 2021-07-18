@@ -5,7 +5,7 @@ export default function Search({stateChanger}){
     const [state, setState] = useState<any>("");
 	
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    	setState(e);
+    	setState(e.target.value);
   	}
 
 	return (
@@ -16,7 +16,7 @@ export default function Search({stateChanger}){
 	      name="search"
 	      placeholder="search"
 	      id="search"
-	      value={state} onChange={e => handleChange(e.target.value)}
+	      value={state} onChange={e => handleChange(e)}
 	      className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full pr-12 sm:text-sm border-gray-300 rounded-md"
 	    />
 	     <button type="submit" onClick={() => {stateChanger(state);}}
