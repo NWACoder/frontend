@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+// @ts-ignore
 export default function Search({stateChanger}){
 
     const [state, setState] = useState<any>("");
@@ -19,7 +19,7 @@ export default function Search({stateChanger}){
 	      value={state} onChange={e => handleChange(e.target.value)}
 	      className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full pr-12 sm:text-sm border-gray-300 rounded-md"
 	    />
-	     <button type="submit" onClick={() => {stateChanger(state); console.log("click")}}
+	     <button type="submit" onClick={() => {stateChanger(state);}}
             className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none">
             Search
           </button>
