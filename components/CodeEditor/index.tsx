@@ -196,7 +196,10 @@ export const CodeEditor = ({
                         handleChangeItemContent={handleChangeItemContent}
                         mode={mode}
                     />
-                    <PublicInputCheckbox onChange={handleUpdatePublicSnippet} />
+                    <PublicInputCheckbox
+                        onChange={handleUpdatePublicSnippet}
+                        checked={snippet.public}
+                    />
                 </div>
                 <div className="flex flex-col ml-4">
                     <ItemListHeader title="Files" onClick={handleAddNewItem} />
@@ -296,13 +299,18 @@ const DetailRectangle = ({ value, name }: DetailRectangle) => {
 
 interface PublicInputCheckbox {
     onChange: ChangeEventHandler<HTMLInputElement>;
+    checked: boolean;
 }
 
-const PublicInputCheckbox = ({ onChange }: PublicInputCheckbox) => {
+const PublicInputCheckbox = ({ onChange, checked }: PublicInputCheckbox) => {
     return (
         <div className="form-group h-12 float-left pt-2">
             <label>
-                <input type="checkbox" onChange={onChange}></input>
+                <input
+                    type="checkbox"
+                    onChange={onChange}
+                    checked={checked}
+                ></input>
                 <span className="ml-2">make this snippet public</span>
             </label>
         </div>
