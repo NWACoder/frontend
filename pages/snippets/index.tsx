@@ -7,31 +7,22 @@ import PageHeader from '../../components/Common/PageHeader';
 import { searchtSnippet } from '../../api/snippet';
 
 export default function Index() {
-    const [state, setState] = useState<any>({ listItems: [] });
-    const [search, setSearch] = useState<any>("");
+    const [items, setItems] = useState([]);
 
     useEffect(() => {
-        const allSnippets = async () => {
+        const allChallenges = async () => {
             const res = await getAllSnippets();
             if (!res) return;
-            setState({ listItems: res });
+            setItems(res);
         };
+        allChallenges();
+    }, []);
 
-        const searchtSnippets = async (query: string) => {
-        	if(!query) return allSnippets();
-	        const res = await searchtSnippet(query);
-	        if (!res) return;
-	        setState({ listItems: res });
-	    };
-
-    	searchtSnippets(search);
-    }, [search]);
-
-
-
-
-
-    const { listItems } = state;
+    const handleSearch = async (query: string) => {
+        const res = await searchtSnippet(query);
+        if (!res) return;
+        setItems(res);
+    };
 
     return (
         <>
@@ -39,11 +30,13 @@ export default function Index() {
                 <main>
                     <PageHeader title="Snippets" />
 
-                    <Search stateChanger={setSearch}/>
+                    <Search onSubmit={handleSearch} />
 
                     <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {listItems.map((item: any) => {
-                            return <ViewSnippet key={item._id} snippet={item} />;
+                        {items.map((item: any) => {
+                            return (
+                                <ViewSnippet key={item._id} snippet={item} />
+                            );
                         })}
                     </div>
                 </main>

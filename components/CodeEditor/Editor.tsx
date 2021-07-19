@@ -3,7 +3,7 @@ import React from 'react';
 import CodeEditor from '@monaco-editor/react';
 import { EditorMode, Item } from '../../types';
 import { languageDetect } from '../../lib/utils/languageDetect';
-const MarkdownPreview = dynamic(() => import('./MarkdownPreview'))
+const MarkdownPreview = dynamic(() => import('./MarkdownPreview'));
 
 const defaultItem: Item = {
     _id: '0',
@@ -15,6 +15,7 @@ const defaultItem: Item = {
 interface CodeEditor {
     item?: Item;
     mode: EditorMode;
+    readOnly?: boolean;
     handleChangeItemContent: ({
         value,
         id,
@@ -27,6 +28,7 @@ interface CodeEditor {
 export const Editor = ({
     item = defaultItem,
     mode,
+    readOnly = false,
     handleChangeItemContent,
 }: CodeEditor) => {
     const { content, name, id } = item;
@@ -40,7 +42,10 @@ export const Editor = ({
                 <CodeEditor
                     value={content}
                     language={language}
-                    options={{ minimap: { enabled: false } }}
+                    options={{
+                        minimap: { enabled: false },
+                        readOnly,
+                    }}
                     onChange={(value) => handleChangeItemContent({ value, id })}
                     saveViewState={false}
                 />

@@ -2,29 +2,31 @@ import { getSnippet } from '../../api/snippet';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { Layout } from '../../components/Common/Layout';
+import { Snippet as SnippetType } from '../../types';
+import { CodeViewer } from '../../components/CodeEditor/CodeViewer';
 
 export default function Snippet() {
     const router = useRouter();
-    const [state, setState] = useState<any>({});
+    const [snippet, setSnippet] = useState<SnippetType | undefined>();
+    const { id } = router.query;
 
     useEffect(() => {
-        const Snippet = async () => {
-            const { id } = router.query;
+        const fetch = async () => {
+            if (!router.isReady) return;
             if (!id || Array.isArray(id)) {
-                router.push('/snippets');
+                router.replace('/');
             } else {
-                const res = await getSnippet(id);
-                setState({ ...res });
+                const data = await getSnippet(id);
+                if (!data) router.replace('/');
+                setSnippet(data);
             }
         };
-        Snippet();
-    }, []);
-
-    const snippet = state;
+        fetch();
+    }, [id]);
 
     return (
-        <>
-            <Layout>{snippet.title}</Layout>
-        </>
+        <Layout>
+            <CodeViewer snippet={snippet} />
+        </Layout>
     );
 }

@@ -9,7 +9,7 @@ import {
     updateItem,
     updateSnippet,
 } from '../../api/user/editor';
-import { CodeEditor } from '../../components/CodeEditor';
+import { CodeEditor } from '../../components/CodeEditor/CodeEditor';
 import { useRouter } from 'next/router';
 
 export default function EditSnippet() {
