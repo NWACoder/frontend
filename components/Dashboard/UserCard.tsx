@@ -19,15 +19,15 @@ export const UserCard = ({ following, followers, stars }: UserCard) => {
                 <div className="row-span-2">
                     <div className="mt-10 grid md:grid-cols-3">
                         <div className="">
-                            <p className="">{(followers = 0)}</p>
+                            <p className="">{(followers)}</p>
                             <p className="">Followers</p>
                         </div>
                         <div className="">
-                            <p className="">{(following = 0)}</p>
+                            <p className="">{(following)}</p>
                             <p className="">Following</p>
                         </div>
                         <div className="place-items-center">
-                            <p className="">{(stars = 0)}</p>
+                            <p className="">{(stars)}</p>
                             <p className="">Stars</p>
                         </div>
                     </div>
