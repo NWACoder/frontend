@@ -1,6 +1,5 @@
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import dynamic from 'next/dynamic';
-import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
 import { getChallenge } from '../../api/challenge';
 const MarkdownPreview = dynamic(
     () => import('../../components/CodeEditor/MarkdownPreview')
@@ -8,30 +7,24 @@ const MarkdownPreview = dynamic(
 import { Layout } from '../../components/Common/Layout';
 import PageHeader from '../../components/Common/PageHeader';
 
-export default function Snippet() {
-    const router = useRouter();
-    const [state, setState] = useState<any>({});
+export const getServerSideProps: GetServerSideProps = async (context) => {
 
-    useEffect(() => {
-        const Challenge = async () => {
-            const { id } = router.query;
-            if (!id || Array.isArray(id)) {
-                router.push('/challenges');
-            } else {
-                const res = await getChallenge(id);
-                setState({ ...res });
-            }
-        };
-        Challenge();
-    }, []);
+	if (!context.query.id || Array.isArray(context.query.id)) {
+	    return { redirect: {permanent: false, destination: '/challenges',}, props: {},}
+	} else {
+	    const res = await getChallenge(context.query.id);
+	    if(!res) return { redirect: {permanent: false, destination: '/challenges',}, props: {},}
+	    return { props: { res } }
+	}
+}
 
-    const challenge = state;
+export default function Challenge({res} : InferGetServerSidePropsType<typeof getServerSideProps>) {
 
     return (
         <>
             <Layout>
-                <PageHeader title={challenge.name} />
-                <MarkdownPreview content={challenge.content} />
+                <PageHeader title={res.name} />
+                <MarkdownPreview content={res.content} />
             </Layout>
         </>
     );
