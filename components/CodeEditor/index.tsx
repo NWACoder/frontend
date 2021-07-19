@@ -5,6 +5,7 @@ import React, {
     useReducer,
 } from 'react';
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
 import { init, initialState, reducer } from '../../lib/reducer/editor';
 import { SnippetFiles } from './SnippetFiles';
 import { ActionType, EditorMode, Snippet } from '../../types';
@@ -26,13 +27,16 @@ const options = [
 interface CodeEditor {
     snippet?: Snippet;
     handleSubmit: (snippet: Snippet) => Promise<void | { error: string }>;
+    handleDelete?: React.MouseEventHandler;
 }
 
 export const CodeEditor = ({
     snippet: _snippet,
     handleSubmit: _handleSubmit,
+    handleDelete,
 }: CodeEditor) => {
     const [state, dispatch] = useReducer(reducer, initialState(), init);
+    const router = useRouter();
 
     useEffect(() => {
         if (_snippet) {
@@ -192,7 +196,10 @@ export const CodeEditor = ({
                         handleChangeItemContent={handleChangeItemContent}
                         mode={mode}
                     />
-                    <PublicInputCheckbox onChange={handleUpdatePublicSnippet} />
+                    <PublicInputCheckbox
+                        onChange={handleUpdatePublicSnippet}
+                        checked={snippet.public}
+                    />
                 </div>
                 <div className="flex flex-col ml-4">
                     <ItemListHeader title="Files" onClick={handleAddNewItem} />
@@ -205,23 +212,51 @@ export const CodeEditor = ({
                         onClickDelete={handleDeleteItem}
                         onInputBlur={handleItemInputBlur}
                     />
-                    <SubmitSnippetButton title="Save" />
+                    <div className="flex flex-row justify-end">
+                        {handleDelete ? (
+                            <SnippetButton
+                                title="Delete"
+                                color="red"
+                                onClick={handleDelete}
+                            />
+                        ) : (
+                            <SnippetButton
+                                title="Cancel"
+                                color="red"
+                                onClick={() => router.back()}
+                            />
+                        )}
+                        <SnippetButton
+                            title="Save"
+                            type="submit"
+                            color="blue"
+                        />
+                    </div>
                 </div>
             </div>
         </form>
     );
 };
 
-interface SubmitSnippetButton {
+interface SnippetButton {
     title: string;
+    type?: 'submit' | 'button' | 'reset';
+    color: 'red' | 'blue' | 'green';
+    onClick?: React.MouseEventHandler;
 }
 
-const SubmitSnippetButton = ({ title }: SubmitSnippetButton) => {
+const SnippetButton = ({
+    title,
+    type = 'button',
+    color,
+    onClick,
+}: SnippetButton) => {
     return (
-        <div className="h-12 text-right pt-2">
+        <div className="h-12 text-right pt-2 ml-4">
             <button
-                className="px-6 py-2 bg-red-300 hover:bg-red-400"
-                type="submit"
+                className={`px-6 py-2 bg-${color}-300 hover:bg-${color}-400`}
+                type={type}
+                onClick={onClick}
             >
                 {title}
             </button>
@@ -264,13 +299,18 @@ const DetailRectangle = ({ value, name }: DetailRectangle) => {
 
 interface PublicInputCheckbox {
     onChange: ChangeEventHandler<HTMLInputElement>;
+    checked: boolean;
 }
 
-const PublicInputCheckbox = ({ onChange }: PublicInputCheckbox) => {
+const PublicInputCheckbox = ({ onChange, checked }: PublicInputCheckbox) => {
     return (
         <div className="form-group h-12 float-left pt-2">
             <label>
-                <input type="checkbox" onChange={onChange}></input>
+                <input
+                    type="checkbox"
+                    onChange={onChange}
+                    checked={checked}
+                ></input>
                 <span className="ml-2">make this snippet public</span>
             </label>
         </div>
