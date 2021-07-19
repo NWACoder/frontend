@@ -7,14 +7,15 @@ const MarkdownPreview = dynamic(
 import PageHeader from '../../components/Common/PageHeader';
 import { createChallenge } from '../../api/challenge';
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
 
 export default function CreateSnippet() {
     const [mode, setMode] = useState<any>(false);
     const [content, setContent] = useState<any>('');
     const [title, setTitle] = useState<any>('');
+    const router = useRouter();
 
     const createaChallenge = async () => {
-        console.log('hi');
         let data = {
             name: title,
             content: content,
@@ -23,7 +24,7 @@ export default function CreateSnippet() {
 
         const res = await createChallenge(data);
         if (!res) return;
-        console.log(res);
+        router.push('/user/dashboard');
     };
 
     return (
