@@ -1,5 +1,5 @@
 // @ts-ignore
-import DOMPurify from 'dompurify';
+import DOMPurify from 'isomorphic-dompurify';
 import Markdown from 'markdown-to-jsx';
 
 import React from 'react';
