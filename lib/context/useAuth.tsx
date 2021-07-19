@@ -31,7 +31,7 @@ interface AuthContext {
 const authContext = createContext<AuthContext | undefined>(undefined);
 
 export function ProvideAuth({ children }: { children: ReactNode }) {
-    const auth = useProvideAuth();
+    const auth = useProvideAuth(children);
     return <authContext.Provider value={auth}>{children}</authContext.Provider>;
 }
 
@@ -43,22 +43,34 @@ export const useAuth = () => {
     return context;
 };
 
-function useProvideAuth() {
+function useProvideAuth(children: React.ReactNode) {
     const [user, setUser] = useState<User | null>(null);
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        const token = localStorage.getItem('codeParcelUserToken');
-        if (token !== null) {
-            try {
-                const user = jwt_decode(token) as User;
-                setUser(user);
-            } catch (error) {
-                return;
-            }
-        }
         setIsLoaded(true);
     }, []);
+
+    useEffect(() => {
+        const user = getUserFromLocalToken();
+        if (!user) {
+            signout();
+        } else {
+            setUser(user);
+        }
+    }, [children]);
+
+    const getUserFromLocalToken = (): User | null => {
+        const token = localStorage.getItem('codeParcelUserToken');
+        try {
+            if (!token) return null;
+            const user = jwt_decode(token) as User;
+            if (new Date().valueOf() / 1000 > user.exp) return null;
+            return user;
+        } catch (error) {
+            return null;
+        }
+    };
 
     const signin = async (username: string, password: string) => {
         try {
