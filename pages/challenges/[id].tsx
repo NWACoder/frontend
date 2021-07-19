@@ -1,7 +1,10 @@
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { getChallenge } from '../../api/challenge';
-import { MarkdownPreview } from '../../components/CodeEditor/MarkdownPreview';
+const MarkdownPreview = dynamic(
+    () => import('../../components/CodeEditor/MarkdownPreview')
+);
 import { Layout } from '../../components/Common/Layout';
 import PageHeader from '../../components/Common/PageHeader';
 
@@ -27,8 +30,8 @@ export default function Snippet() {
     return (
         <>
             <Layout>
-            	<PageHeader title={challenge.name}/>
-				<MarkdownPreview content={challenge.content} />
+                <PageHeader title={challenge.name} />
+                <MarkdownPreview content={challenge.content} />
             </Layout>
         </>
     );
