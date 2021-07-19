@@ -16,6 +16,14 @@ export const createSnippet = async (snippet: Snippet) => {
     }
 };
 
+export const deleteSnippet = async (id: string) => {
+    try {
+        await authAxios().delete(`/snippets/${id}`);
+    } catch (error) {
+        console.log(error);
+    }
+};
+
 export const updateSnippet = async (snippet: Snippet) => {
     const { title, tags, public: _public, _id, items } = snippet;
     try {

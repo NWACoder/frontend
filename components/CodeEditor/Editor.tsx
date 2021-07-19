@@ -1,8 +1,9 @@
+import dynamic from 'next/dynamic';
 import React from 'react';
 import CodeEditor from '@monaco-editor/react';
 import { EditorMode, Item } from '../../types';
 import { languageDetect } from '../../lib/utils/languageDetect';
-import { MarkdownPreview } from './MarkdownPreview';
+const MarkdownPreview = dynamic(() => import('./MarkdownPreview'))
 
 const defaultItem: Item = {
     _id: '0',
