@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Layout } from '../../components/Common/Layout';
-import { Snippet } from '../../types';
-import { fetchSnippet, updateSnippet } from '../../api/user/editor';
+import { Item, Snippet } from '../../types';
+import {
+    createItem,
+    deleteItem,
+    fetchSnippet,
+    updateItem,
+    updateSnippet,
+} from '../../api/user/editor';
 import { CodeEditor } from '../../components/CodeEditor';
 import { useRouter } from 'next/router';
 
 export default function EditSnippet() {
-    const [snippet, setSnippet] = useState<Snippet | undefined>(undefined);
+    const [_snippet, setSnippet] = useState<Snippet | undefined>(undefined);
     const router = useRouter();
     const { id } = router.query;
 
@@ -25,9 +31,34 @@ export default function EditSnippet() {
     }, [id]);
 
     const handleSubmit = async (snippet: Snippet) => {
-        try {
-            await updateSnippet(snippet);
+        if (_snippet === undefined) {
             router.push('/user/dashboard');
+            return;
+        }
+        const { items: _items } = _snippet;
+        const { items } = snippet;
+        const deleteItemIDs: string[] = [];
+        const newItems: Item[] = [];
+        const existingItems: Item[] = [];
+        try {
+            _items.forEach((_item) => {
+                if (!items.find((item) => item._id === _item._id)) {
+                    deleteItemIDs.push(_item._id);
+                }
+            });
+            items.forEach((item) => {
+                item._id ? existingItems.push(item) : newItems.push(item);
+            });
+
+            const deleteItems = deleteItemIDs.map((id) => deleteItem(id));
+            const updateItems = existingItems.map((item) => updateItem(item));
+            const createItems = newItems.map((item) => createItem(item));
+            await Promise.all(deleteItems);
+            const savedItems = await Promise.all([
+                ...createItems,
+                ...updateItems,
+            ]);
+            await updateSnippet({ ...snippet, items: savedItems });
         } catch (error) {
             throw new Error('Unable to save snippet');
         }
@@ -35,7 +66,7 @@ export default function EditSnippet() {
 
     return (
         <Layout protectedRoute={true}>
-            <CodeEditor handleCreateSnippet={handleSubmit} snippet={snippet} />
+            <CodeEditor handleSubmit={handleSubmit} snippet={_snippet} />
         </Layout>
     );
 }

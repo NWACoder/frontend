@@ -25,14 +25,12 @@ const options = [
 
 interface CodeEditor {
     snippet?: Snippet;
-    handleCreateSnippet: (
-        snippet: Snippet
-    ) => Promise<void | { error: string }>;
+    handleSubmit: (snippet: Snippet) => Promise<void | { error: string }>;
 }
 
 export const CodeEditor = ({
     snippet: _snippet,
-    handleCreateSnippet,
+    handleSubmit: _handleSubmit,
 }: CodeEditor) => {
     const [state, dispatch] = useReducer(reducer, initialState(), init);
 
@@ -113,7 +111,7 @@ export const CodeEditor = ({
     const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
         e.preventDefault();
         try {
-            await handleCreateSnippet(state.snippet);
+            await _handleSubmit(state.snippet);
         } catch (error) {
             console.error(error);
             // TODO handle error
@@ -174,7 +172,7 @@ export const CodeEditor = ({
                         <DetailRectangle value={0} name="star" />
                     </div>
                     <Select
-                    // @ts-ignore
+                        // @ts-ignore
                         options={options}
                         isMulti
                         name="langs"
