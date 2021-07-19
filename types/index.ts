@@ -40,7 +40,7 @@ export interface Tag {
     name: string;
 }
 export interface Item {
-	_id: string;
+	_id?: string;
     id: string;
     name: string;
     content: string;
