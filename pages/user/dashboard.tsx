@@ -21,11 +21,21 @@ export default function Dashboard() {
     return (
         <Layout protectedRoute={true}>
             <main className="flex flex-col flex-grow items-center w-full text-center">
-                <Link href="/user/create-snippet">
-                    <button className="flex bg-red-300 py-2 px-3 rounded text-black hover:bg-red-400">
+
+            	<div className="space-x-2">
+            		<Link href="/user/create-snippet" >
+                    <button className="bg-red-300 py-2 px-3 rounded text-black hover:bg-red-400">
                         Create Snippet
                     </button>
                 </Link>
+                <Link href="/user/create-challenge">
+                    <button className=" bg-blue-300 py-2 px-3 rounded text-black hover:bg-blue-400">
+                        Create Challenge
+                    </button>
+                </Link>
+            	</div>
+                
+
                 <div className="flex flex-row flex-wrap justify-center">
                     {snippets.map((snippet) => (
                         <SnippetCard snippet={snippet} key={snippet._id} />

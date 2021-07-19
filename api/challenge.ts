@@ -9,7 +9,6 @@ export const createChallenge = async (data) => {
     }
 };
 
-
 export const getAllChallenges = async () => {
     try {
         const response = await nonAuthAxios().get(`challenges`);
@@ -25,5 +24,14 @@ export const searchtChallenge = async (query: string) => {
         return response.data;
     } catch (error) {
         console.error(`Failed to search Challenges`);
+    }
+};
+
+export const getChallenge = async (id: string) => {
+    try {
+        const response = await nonAuthAxios().get(`challenges/${id}`);
+        return response.data;
+    } catch (error) {
+        console.error(`Failed to fetch snippet ID:${id}`);
     }
 };

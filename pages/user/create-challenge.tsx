@@ -31,7 +31,7 @@ export default function CreateSnippet() {
         	value={title}
         	onChange={(e) => { setTitle(e.target.value); }}
         	 />
-        	<button onClick={() => { setMode(!mode); }}>Preview</button>
+        	<button onClick={() => { setMode(!mode); }}>Preview Markdown</button>
         	<div className="h-96 py-2 bg-white border-8 border-gray-300">
 	        	<div className={`h-full ${mode === false ? '' : 'hidden'}`}>
 	        		<CodeEditor
