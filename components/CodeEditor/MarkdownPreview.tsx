@@ -12,3 +12,5 @@ export const MarkdownPreview = ({ content }: { content: string }) => {
         </div>
     );
 };
+
+export default MarkdownPreview;
