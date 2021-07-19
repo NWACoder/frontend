@@ -5,6 +5,7 @@ import { languageDetect } from '../../lib/utils/languageDetect';
 import { MarkdownPreview } from './MarkdownPreview';
 
 const defaultItem: Item = {
+    _id: '0',
     id: '0',
     name: 'untitled',
     content: '',
