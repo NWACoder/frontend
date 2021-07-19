@@ -26,7 +26,7 @@ const options = [
 
 interface CodeEditor {
     snippet?: Snippet;
-    handleSubmit: (snippet: Snippet) => Promise<void | { error: string }>;
+    handleSubmit?: (snippet: Snippet) => Promise<void | { error: string }>;
     handleDelete?: React.MouseEventHandler;
 }
 
@@ -114,6 +114,7 @@ export const CodeEditor = ({
 
     const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
         e.preventDefault();
+        if (!_handleSubmit) return;
         try {
             await _handleSubmit(state.snippet);
         } catch (error) {
