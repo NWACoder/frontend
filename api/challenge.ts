@@ -18,6 +18,15 @@ export const getAllChallenges = async () => {
     }
 };
 
+export const getUserChallenges = async () => {
+    try {
+        const response = await authAxios().get(`challenges/user`);
+        return response.data;
+    } catch (error) {
+        console.error('Failed to fetch Challenges');
+    }
+};
+
 export const searchtChallenge = async (query: string) => {
     try {
         const response = await nonAuthAxios().get(`challenges/search?query=${query}`);

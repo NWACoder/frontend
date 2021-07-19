@@ -13,9 +13,7 @@ export const SnippetCard = ({ snippet }: SnippetCard) => {
     return (
         <Link href={`/user/edit-snippet?id=${snippet._id}`}>
             <div
-                className="snippet-card flex flex-col border border-gray-800 rounded my-4 mx-4 hover:shadow-lg hover:border-blue-900 cursor-pointer"
-                style={{ width: '450px' }}
-            >
+                className="snippet-card w-full border border-gray-800 rounded my-4 mx-4 hover:shadow-lg hover:border-blue-900 cursor-pointer">
                 <div className="snippet-card-header flex flex-row items-center bg-gray-800 text-white py-1 px-4">
                     <div className="flex flew-row -ml-2 mr-auto">
                         {fileTypes.map((type) => (
