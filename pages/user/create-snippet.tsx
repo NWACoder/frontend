@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { Layout } from '../../components/Common/Layout';
 import { Snippet } from '../../types';
 import { createSnippet } from '../../api/user/editor';
-import { CodeEditor } from '../../components/CodeEditor';
+import { CodeEditor } from '../../components/CodeEditor/CodeEditor';
 
 export default function CreateSnippet() {
     const router = useRouter();
