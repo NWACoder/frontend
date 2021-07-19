@@ -18,14 +18,18 @@ export default function Index() {
         };
 
         const searchtSnippets = async (query: string) => {
+        	if(!query) return allSnippets();
 	        const res = await searchtSnippet(query);
 	        if (!res) return;
 	        setState({ listItems: res });
 	    };
 
     	searchtSnippets(search);
-        allSnippets();
     }, [search]);
+
+
+
+
 
     const { listItems } = state;
 

@@ -10,20 +10,20 @@ export default function Index() {
     const [search, setSearch] = useState<any>("");
 
     useEffect(() => {
-        const allSnippets = async () => {
+        const AllChallenge = async () => {
             const res = await getAllChallenges();
             if (!res) return;
             setState({ listItems: res });
         };
 
         const searchtChallenges = async (query: string) => {
+        	if(!query) return AllChallenge();
 	        const res = await searchtChallenge(query);
 	        if (!res) return;
 	        setState({ listItems: res });
 	    };
 
-    	searchtChallenges(search);
-        allSnippets();
+        searchtChallenges(search);
     }, [search]);
 
     const { listItems } = state;
