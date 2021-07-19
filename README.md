@@ -41,3 +41,9 @@ CodeParcel is an application for community code snippets mixed with code challen
 #### Add new file
 
 1. click the new file button in the snippet editor & give your desired file the file extension.
+
+
+
+##  License
+
+[MIT License](https://choosealicense.com/licenses/mit/).
