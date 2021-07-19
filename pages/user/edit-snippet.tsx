@@ -43,7 +43,7 @@ export default function EditSnippet() {
         try {
             _items.forEach((_item) => {
                 if (!items.find((item) => item._id === _item._id)) {
-                    deleteItemIDs.push(_item._id);
+                    deleteItemIDs.push(_item.id);
                 }
             });
             items.forEach((item) => {
@@ -59,6 +59,7 @@ export default function EditSnippet() {
                 ...updateItems,
             ]);
             await updateSnippet({ ...snippet, items: savedItems });
+            router.push('/user/dashboard');
         } catch (error) {
             throw new Error('Unable to save snippet');
         }

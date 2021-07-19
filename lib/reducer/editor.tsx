@@ -19,7 +19,7 @@ export const initialState = (): EditorState => {
         snippet: {
             _id: '0',
             title: '',
-            items: [{ _id: '0', id: '0', name: 'untitled.js', content: '' }],
+            items: [{ id: '0', name: 'untitled.js', content: '' }],
             tags: [],
             public: false,
         },
@@ -83,7 +83,6 @@ export const reducer = (state: EditorState, action: Action) => {
         case 'ADD_ITEM': {
             const id = String(Math.floor(Math.random() * 10000000));
             const newItem: Item = {
-                _id: id,
                 id,
                 name: 'untitled.js',
                 content: '',
