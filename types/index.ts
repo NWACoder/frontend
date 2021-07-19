@@ -35,10 +35,12 @@ export interface Snippet {
 }
 
 export interface Tag {
+    _id: string;
     id: string;
     name: string;
 }
 export interface Item {
+	_id: string;
     id: string;
     name: string;
     content: string;

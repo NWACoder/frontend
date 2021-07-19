@@ -19,7 +19,7 @@ export default function CreateSnippet() {
 
     return (
         <Layout protectedRoute={true}>
-            <CodeEditor handleCreateSnippet={handleSubmit} />
+            <CodeEditor handleSubmit={handleSubmit} />
         </Layout>
     );
 }

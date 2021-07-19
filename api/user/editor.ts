@@ -1,5 +1,5 @@
 import { authAxios } from '../../lib/axios/';
-import { Snippet } from '../../types';
+import { Item, Snippet } from '../../types';
 
 export const createSnippet = async (snippet: Snippet) => {
     const { title, tags, items, public: _public } = snippet;
@@ -17,16 +17,48 @@ export const createSnippet = async (snippet: Snippet) => {
 };
 
 export const updateSnippet = async (snippet: Snippet) => {
-    const { title, tags, items, public: _public, _id } = snippet;
-	console.log(items)
+    const { title, tags, public: _public, _id, items } = snippet;
     try {
         const res = await authAxios().patch(`/snippets/${_id}`, {
-            title,
             items,
+            title,
             public: _public,
             tags,
         });
-		console.log(res.data)
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const createItem = async (item: Item) => {
+    const { name, content } = item;
+    try {
+        const res = await authAxios().post(`/items`, {
+            name,
+            content,
+        });
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const updateItem = async (item: Item) => {
+    const { name, content, _id } = item;
+    try {
+        const res = await authAxios().patch(`/items/${_id}`, {
+            name,
+            content,
+        });
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const deleteItem = async (id: string) => {
+    try {
+        const res = await authAxios().delete(`/items/${id}`);
         return res.data;
     } catch (error) {
         console.log(error);
