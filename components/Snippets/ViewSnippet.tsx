@@ -32,7 +32,7 @@ export const ViewSnippet = ({ snippet }: SnippetCard) => {
                 </div>
                 <div className="flex flex-row py-4 px-4 items-center">
                     <div className="text-lg mr-auto">{title}</div>
-                    <Link href={`/user/profile/${author}`}><div>by: {author || 'unknown'}</div></Link>
+                    <Link href={`/user/${author}`}><div>by: {author || 'unknown'}</div></Link>
                 </div>
             </div>
         </Link>

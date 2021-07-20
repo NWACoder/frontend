@@ -13,7 +13,7 @@ export const ListChallenge = ({challenge, link}) => {
 					<div className="flex items-center justify-between">
 					<Link href={link}><h3 className="text-sm font-medium cursor-pointer">{name}</h3></Link>
 					</div>
-					<Link href={`/user/profile/${user_id.username}`}><p className="text-sm text-gray-500 cursor-pointer">by: {user_id.username}</p></Link>
+					<Link href={`/user/${user_id.username}`}><p className="text-sm text-gray-500 cursor-pointer">by: {user_id.username}</p></Link>
 				</div>
 			</div>
 		</div>
