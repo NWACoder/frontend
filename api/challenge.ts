@@ -46,13 +46,26 @@ export const getChallenge = async (id: string) => {
     }
 };
 
-
 export const updateChallenge = async (challenge: Challenge) => {
     const { name,  _id, content } = challenge;
     try {
         const res = await authAxios().patch(`/challenges/${_id}`, {
             name,
             content,
+        });
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const updateSolutions = async (challenge: Challenge) => {
+    const { name,  _id, content, solutions } = challenge;
+    try {
+        const res = await authAxios().patch(`/challenges/${_id}`, {
+            name,
+            content,
+            solutions
         });
         return res.data;
     } catch (error) {
