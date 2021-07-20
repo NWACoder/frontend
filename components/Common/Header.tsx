@@ -32,7 +32,7 @@ export const Header = ({
     })
 
     return (
-        <header className="flex flex-row font-thin flex-wrap">
+        <header className="flex flex-row font-thin flex-wrap mb-8">
             <div className="mr-8">
             	<Link href="/">
 	                <div className="cursor-pointer">
