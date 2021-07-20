@@ -50,7 +50,7 @@ export default function Dashboard() {
 		                    </button>
 		                </Link>
 	                    {challenges.map((item) => (
-	                        <ListChallenge key={item._id} challenge={item} />
+	                        <ListChallenge key={item._id} challenge={item} link={`/user/edit-challenge?id=${item._id}`} />
 	                    ))}
 	                </div>
             	</div>

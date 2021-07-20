@@ -34,6 +34,16 @@ export interface Snippet {
     user_id?: { _id: string; username: string };
 }
 
+
+export interface Challenge {
+    _id: string;
+    name: string;
+	content: string
+	solutions?: Snippet[]
+}
+
+
+
 export interface Tag {
     _id: string;
     id: string;

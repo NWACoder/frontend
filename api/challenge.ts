@@ -1,4 +1,5 @@
 import { authAxios, nonAuthAxios } from '../lib/axios';
+import { Challenge } from '../types';
 // @ts-ignore
 export const createChallenge = async (data) => {
     try {
@@ -44,3 +45,27 @@ export const getChallenge = async (id: string) => {
         console.error(`Failed to fetch snippet ID:${id}`);
     }
 };
+
+
+export const updateChallenge = async (challenge: Challenge) => {
+    const { name,  _id, content } = challenge;
+    try {
+        const res = await authAxios().patch(`/challenges/${_id}`, {
+            name,
+            content,
+        });
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const deleteChallenge = async (id: string) => {
+	try {
+        const res = await authAxios().delete(`/challenges/${id}`);
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+}
+

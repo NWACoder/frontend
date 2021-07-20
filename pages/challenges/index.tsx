@@ -36,6 +36,7 @@ export default function Index() {
                                 <ListChallenge
                                     key={item._id}
                                     challenge={item}
+                                    link={`/challenges/${item._id}`}
                                 />
                             );
                         })}
