@@ -89,7 +89,7 @@ export default function Challenge({res} : InferGetServerSidePropsType<typeof get
             	<div className="text-2xl p-4 bg-blue-300 w-max my-2 mt-8">
 					Snippet Solutions
             	</div>
-            	<div className="grid grid-cols-3 gap-4">
+            	<div className="grid grid-cols-1 md:grid-cols-3 gap-4 m-2 md:md-4">
                 	{res.solutions.map((item: any) => {
                        	return ( <ViewSnippet key={item._id} snippet={item} /> );
                     })}
