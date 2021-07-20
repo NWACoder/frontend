@@ -20,7 +20,7 @@ export const LatestSnippets = () => {
             <div className="text-2xl p-4 bg-blue-300 w-max my-2">
                 Latest Snippets
             </div>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 m-2 md:md-4">
                 {  state && state.map((item: any) => {
                     return <ViewSnippet key={item._id} snippet={item} />;
                 })}
