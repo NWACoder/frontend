@@ -28,7 +28,7 @@ export default function Challenge({res} : InferGetServerSidePropsType<typeof get
     const [solutionModal, setSolutionModal] = useState(false);
 
     const handleAttach = async (id:string) => {
-
+    	// @ts-ignore
     	if(res.solutions.filter(e => e._id === id).length > 0) return
 
     	res.solutions = [...res.solutions, id]
