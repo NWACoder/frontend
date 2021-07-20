@@ -45,7 +45,7 @@ export default function Dashboard() {
 	                </div>
 	                <div className="">
 	                	<Link href="/user/create-challenge">
-		                    <button className=" bg-blue-300 py-2 px-3 rounded text-black hover:bg-blue-400">
+		                    <button className=" bg-blue-300 py-2 px-3 rounded text-black hover:bg-blue-400 mb-4">
 		                        Create Challenge
 		                    </button>
 		                </Link>

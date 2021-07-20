@@ -7,7 +7,7 @@ export const ListChallenge = ({challenge}) => {
 
 	return (
 		
-		<div className="py-4  bg-blue-50 p-4">
+		<div className="py-4  bg-blue-50 p-4 mb-4">
 			<div className="flex space-x-3">
 				<div className="flex-1 space-y-1">
 					<div className="flex items-center justify-between">
