@@ -27,23 +27,23 @@ CodeParcel is an application for community code snippets mixed with code challen
 3. Password
 4. Confirm Password
 
-### Logging in
+### Logging In
 
 1. Enter user name
 2. Enter Password
 
-### Create a snippet
+### Creating Snippet
 
-1. navigating to the top right corner, click your user name, click dashboard
+1. Navigating to the top right corner, click your user name, click dashboard
 2. Enter snippet name
-3. Write your code in the editor.
+3. Write your code in the editor
+4. Click public if you want the snippet to be a public snippet
+5. Save snippet when done
 
-#### Add new file
+#### Add New file
 
-1. click the new file button in the snippet editor & give your desired file the file extension.
+1. Click the new file button in the snippet editor & give your file the desired file extension
 
-
-
-##  License
+## License
 
 [MIT License](https://choosealicense.com/licenses/mit/).
